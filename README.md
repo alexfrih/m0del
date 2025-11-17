@@ -76,19 +76,19 @@ Steps: [press Enter]
 
 ```bash
 # Fast generation
-python generate_2025_models.py "a cat" --model sdxl-turbo
+python generate.py "a cat" --model sdxl-turbo
 
 # Best quality
-python generate_2025_models.py "portrait" --model flux-schnell
+python generate.py "portrait" --model flux-schnell
 
 # Best text rendering
-python generate_2025_models.py "poster with text 'HELLO'" --model qwen-image
+python generate.py "poster with text 'HELLO'" --model qwen-image --quantize 4bit
 
 # NSFW
-python generate_2025_models.py "your prompt" --model realistic-vision-nsfw
+python generate.py "your prompt" --model realistic-vision-nsfw
 
-# Quantized (less RAM)
-python generate_quantized.py "your prompt" --model qwen-image --quantize 4bit
+# Quantized (less RAM) - automatically handles large models
+python generate.py "your prompt" --model qwen-image --quantize 4bit
 ```
 
 ## Understanding Steps
@@ -114,23 +114,21 @@ python generate_quantized.py "your prompt" --model qwen-image --quantize 4bit
 image-generation/
 ├── README.md                    # You are here
 ├── requirements.txt             # Dependencies
+├── generate.py                  # ⭐ ONE SCRIPT - Everything you need!
 │
-├── Scripts (User-facing)
-│   ├── generate.py              # Interactive mode ⭐ START HERE
-│   ├── generate_2025_models.py  # Command line with 2025 models
-│   ├── generate_quantized.py    # Quantized models (less RAM)
-│   └── add_uncensored_models.py # NSFW model examples
-│
-├── Demos (Educational)
-│   ├── pixel_map_efficiency.py  # FLOPs calculations
+├── Educational Demos
+│   ├── pixel_map_efficiency.py  # Proves 1,000,000× FLOPs difference
 │   ├── pixel_map_visualizer.py  # Generate simple patterns
-│   └── why_iteration_costs.py   # Show iteration costs
+│   └── why_iteration_costs.py   # Shows why iterations are expensive
 │
-└── output/                      # Generated images (not tracked)
-    ├── generated/               # From generate.py
-    ├── 2025_models/             # From generate_2025_models.py
-    └── quantized/               # From generate_quantized.py
+└── output/generated/            # Generated images (not tracked by git)
 ```
+
+**That's it!** Just one script with everything:
+- 13+ models (fast, quality, NSFW)
+- Quantization support (4-bit/8-bit)
+- Interactive menu + CLI mode
+- All in one place
 
 ## Model Details
 
@@ -204,7 +202,7 @@ python generate.py  # Interactive generator
 ### Quantization Support (Optional)
 ```bash
 pip install bitsandbytes
-python generate_quantized.py  # Use quantized models
+python generate.py "prompt" --model qwen-image --quantize 4bit
 ```
 
 ## Quantization (Run Large Models on Limited RAM)
@@ -224,10 +222,10 @@ python generate_quantized.py  # Use quantized models
 pip install bitsandbytes
 
 # Qwen-Image 4-bit (fits in 12-16GB RAM)
-python generate_quantized.py "poster with text" --model qwen-image --quantize 4bit
+python generate.py "poster with text" --model qwen-image --quantize 4bit
 
 # FLUX 4-bit (fits in 8GB RAM)
-python generate_quantized.py "portrait" --model flux-schnell --quantize 4bit
+python generate.py "portrait" --model flux-schnell --quantize 4bit
 ```
 
 **Quality loss:** ~10% (90% quality at 25% size - great tradeoff!)
@@ -330,7 +328,7 @@ pip install protobuf sentencepiece
 Try quantized models:
 ```bash
 pip install bitsandbytes
-python generate_quantized.py "prompt" --model sd-3.5-large --quantize 4bit
+python generate.py "prompt" --model sd-3.5-large --quantize 4bit
 ```
 
 Or use smaller models:
@@ -360,7 +358,7 @@ Fast, great quality, works on CPU.
 
 ### Need Text in Images
 ```bash
-python generate_quantized.py "poster text" --model qwen-image --quantize 4bit
+python generate.py "poster text" --model qwen-image --quantize 4bit
 ```
 Best text rendering, reasonable RAM usage.
 
@@ -397,7 +395,7 @@ Steps: [press Enter]
 
 ### Generate a Poster with Text
 ```bash
-python generate_quantized.py "vintage travel poster with text 'Paris 1920'" \
+python generate.py "vintage travel poster with text 'Paris 1920'" \
   --model qwen-image --quantize 4bit --steps 28
 ```
 
@@ -451,12 +449,12 @@ python generate.py
 
 **Use specific model:**
 ```bash
-python generate_2025_models.py "prompt" --model sdxl-turbo
+python generate.py "prompt" --model sdxl-turbo
 ```
 
 **Less RAM:**
 ```bash
-python generate_quantized.py "prompt" --model qwen-image --quantize 4bit
+python generate.py "prompt" --model qwen-image --quantize 4bit
 ```
 
 **See theory:**
