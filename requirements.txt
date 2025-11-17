@@ -1,0 +1,37 @@
+# ============================================================================
+# MINIMAL INSTALL (Demonstrations Only)
+# ============================================================================
+# These are enough to run pixel_map_efficiency.py, pixel_map_visualizer.py,
+# and why_iteration_costs.py - which show concepts but don't generate AI images
+#
+# Install with: pip install -r requirements.txt
+
+numpy>=1.21.0
+Pillow>=9.0.0
+
+# Additional dependencies for newer models (FLUX, etc.)
+protobuf>=3.20.0
+sentencepiece>=0.1.99
+
+# ============================================================================
+# FULL INSTALL (Real AI Image Generation)
+# ============================================================================
+# To use generate_from_prompt.py and create actual images from text prompts,
+# you also need these (uncomment the lines below):
+#
+# Install with: pip install torch diffusers transformers accelerate
+#
+# OR uncomment these lines and run: pip install -r requirements.txt
+#
+# torch>=2.0.0
+# diffusers>=0.25.0
+# transformers>=4.30.0
+# accelerate>=0.20.0
+# safetensors>=0.3.0
+
+# ============================================================================
+# QUICK INSTALL COMMAND FOR REAL MODELS:
+# ============================================================================
+# pip install torch torchvision diffusers transformers accelerate
+#
+# This downloads ~2GB and enables generate_from_prompt.py to work

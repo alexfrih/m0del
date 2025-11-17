@@ -1,0 +1,30 @@
+# Generated images
+output/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model cache (Hugging Face downloads)
+# Uncomment if you don't want to track downloaded models locally
+# ~/.cache/huggingface/
+
+# Temporary files
+*.tmp
+*.log
